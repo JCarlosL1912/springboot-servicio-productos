@@ -33,7 +33,6 @@ public class Cliente implements Serializable{
 	private String email;
 	
 	public Cliente() {
-		super();
 	}
 	public Cliente(String nombre, String apellido, String dni, String telefono, String email) {
 		super();
@@ -45,9 +44,6 @@ public class Cliente implements Serializable{
 	}
 	public Long getId() {
 		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public String getNombre() {
 		return nombre;

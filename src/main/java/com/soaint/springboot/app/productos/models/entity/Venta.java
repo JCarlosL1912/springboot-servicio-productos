@@ -26,7 +26,7 @@ public class Venta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idVenta")
 	private Long id;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Cliente cliente;
 	@Temporal(TemporalType.DATE)
 	private Date fecha;

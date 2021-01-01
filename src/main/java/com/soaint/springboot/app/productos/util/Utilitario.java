@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.soaint.springboot.app.productos.models.entity.Cliente;
 import com.soaint.springboot.app.productos.models.entity.Producto;
+import com.soaint.springboot.app.productos.models.entity.Venta;
 
 public class Utilitario {
 	public static boolean verificarBodyProducto(Producto producto) {
@@ -25,6 +26,15 @@ public class Utilitario {
 		} else if(cliente.getTelefono() == null) {
 			return false;
 		} else if(cliente.getEmail() == null) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean verificarBodyVenta(Venta venta) {
+		if (venta.getCliente() == null) {
+			return false;
+		} else if (venta.getFecha() == null) {
 			return false;
 		}
 		return true;
