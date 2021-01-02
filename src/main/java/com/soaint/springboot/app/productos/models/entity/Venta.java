@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "venta")
@@ -26,8 +27,10 @@ public class Venta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idVenta")
 	private Long id;
+	@NotNull
 	@ManyToOne(cascade = CascadeType.MERGE)
 	private Cliente cliente;
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	

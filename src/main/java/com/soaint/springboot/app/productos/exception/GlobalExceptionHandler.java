@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -33,7 +34,7 @@ public class GlobalExceptionHandler {
 			response.setCode(Constantes.READ_ERROR_CODE);
 		}
 		response.setBackendMessage(e);
-		LOG.debug(Utilitario.getJsonPrint(response));
+		LOG.error(Utilitario.getJsonPrint(response));
 		return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 	}
 	
@@ -43,6 +44,18 @@ public class GlobalExceptionHandler {
 		response.setHttpStatus(String.valueOf(HttpStatus.BAD_REQUEST.value()));
 		response.setMessage(Constantes.CREATE_ERROR_MESSAGE);
 		response.setCode(Constantes.CREATE_ERROR_CODE);
+		response.setBackendMessage(e);
+		LOG.error(Utilitario.getJsonPrint(response));
+		return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(BadCredentialsException.class)
+	public ResponseEntity<?> handleBadCredendtials(BadCredentialsException e, WebRequest request) {
+		ResponseBean response = new ResponseBean();
+		response.setHttpStatus(String.valueOf(HttpStatus.BAD_REQUEST.value()));
+		response.setMessage(Constantes.LOGIN_ERROR_MESSAGE);
+		response.setCode(Constantes.LOGIN_ERROR_CODE);
+		response.setResponse(null);
 		response.setBackendMessage(e);
 		LOG.debug(Utilitario.getJsonPrint(response));
 		return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
@@ -55,7 +68,7 @@ public class GlobalExceptionHandler {
 		response.setMessage(Constantes.ERROR_MESSAGE);
 		response.setCode(Constantes.ERROR_CODE);
 		response.setBackendMessage(e);
-		LOG.debug(Utilitario.getJsonPrint(response));
+		LOG.error(Utilitario.getJsonPrint(response));
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

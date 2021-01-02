@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cliente")
@@ -21,14 +22,19 @@ public class Cliente implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idCliente")
 	private Long id;
+	@NotNull
 	@Column(name = "nombre")
 	private String nombre;
+	@NotNull
 	@Column(name = "apellido")
 	private String apellido;
+	@NotNull
 	@Column(name = "dni")
 	private String dni;
+	@NotNull
 	@Column(name = "telefono")
 	private String telefono;
+	@NotNull
 	@Column(name = "email")
 	private String email;
 	

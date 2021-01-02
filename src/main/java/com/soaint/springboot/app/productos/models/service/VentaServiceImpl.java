@@ -1,6 +1,7 @@
 package com.soaint.springboot.app.productos.models.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class VentaServiceImpl implements IVentaService {
 
 	@Override
 	public Venta getById(Long id) {
-		return ventaDao.findById(id).orElseThrow();
+		return ventaDao.findById(id).orElseThrow(()-> new NoSuchElementException());
 	}
 
 }

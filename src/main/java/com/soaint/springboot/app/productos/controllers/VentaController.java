@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.soaint.springboot.app.productos.bean.ResponseBean;
 import com.soaint.springboot.app.productos.exception.CreateEmptyObjectException;
 import com.soaint.springboot.app.productos.exception.EmptyIdException;
-import com.soaint.springboot.app.productos.models.entity.Producto;
 import com.soaint.springboot.app.productos.models.entity.Venta;
 import com.soaint.springboot.app.productos.models.service.IVentaService;
 import com.soaint.springboot.app.productos.util.Constantes;
@@ -32,7 +31,7 @@ public class VentaController {
 	@Autowired
 	private IVentaService ventaService;
 	
-	@PostMapping("/venta")
+	@PostMapping(Constantes.RUTA_VENTA)
 	public ResponseBean create(@RequestBody Venta venta) throws CreateEmptyObjectException {
 		LOG.debug(Utilitario.getJsonPrint(venta));
 		ResponseBean response = new ResponseBean();
@@ -49,7 +48,7 @@ public class VentaController {
 		return response;
 	}
 	
-	@GetMapping("/ventas")
+	@GetMapping(Constantes.RUTA_VENTAS)
 	public ResponseBean listar() {
 		ResponseBean response = new ResponseBean();
 		List<Venta> lista = new ArrayList<>();
@@ -62,7 +61,7 @@ public class VentaController {
 		return response;
 	}
 	
-	@GetMapping("/venta/{id}")
+	@GetMapping(Constantes.RUTA_ID_VENTA)
 	public ResponseBean detalle(@PathVariable Long id) throws EmptyIdException {
 		LOG.debug("ID: "+id);
 		ResponseBean response = new ResponseBean();

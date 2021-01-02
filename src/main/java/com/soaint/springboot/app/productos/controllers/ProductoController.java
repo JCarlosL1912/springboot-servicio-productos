@@ -31,7 +31,7 @@ public class ProductoController {
 	@Autowired
 	private IProductoService productoService;
 	
-	@PostMapping("/producto")
+	@PostMapping(Constantes.RUTA_PRODUCTO)
 	public ResponseBean create(@RequestBody Producto producto) throws CreateEmptyObjectException {
 		LOG.debug(Utilitario.getJsonPrint(producto));
 		ResponseBean response = new ResponseBean();
@@ -48,7 +48,7 @@ public class ProductoController {
 		return response;
 	}
 	
-	@GetMapping("/productos")
+	@GetMapping(Constantes.RUTA_PRODUCTOS)
 	public ResponseBean listar() {
 		ResponseBean response = new ResponseBean();
 		List<Producto> lista = new ArrayList<>();
@@ -61,7 +61,7 @@ public class ProductoController {
 		return response;
 	}
 	
-	@GetMapping("/producto/{id}")
+	@GetMapping(Constantes.RUTA_ID_PRODUCTO)
 	public ResponseBean detalle(@PathVariable Long id) throws EmptyIdException {
 		LOG.debug("ID: "+id);
 		ResponseBean response = new ResponseBean();
@@ -79,7 +79,7 @@ public class ProductoController {
 		return response;
 	}
 	
-	@PutMapping("/producto") 
+	@PutMapping(Constantes.RUTA_PRODUCTO) 
 	public ResponseBean update(Producto producto) throws CreateEmptyObjectException {
 		LOG.debug(Utilitario.getJsonPrint(producto));
 		ResponseBean response = new ResponseBean();
@@ -96,7 +96,7 @@ public class ProductoController {
 		return response;
 	}
 	
-	@DeleteMapping("/producto/{id}")
+	@DeleteMapping(Constantes.RUTA_ID_PRODUCTO)
 	public ResponseBean delete(@PathVariable Long id) throws EmptyIdException {
 		LOG.debug("ID: "+id);
 		ResponseBean response = new ResponseBean();

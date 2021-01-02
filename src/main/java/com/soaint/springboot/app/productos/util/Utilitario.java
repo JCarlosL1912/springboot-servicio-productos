@@ -5,8 +5,19 @@ import com.google.gson.GsonBuilder;
 import com.soaint.springboot.app.productos.models.entity.Cliente;
 import com.soaint.springboot.app.productos.models.entity.Producto;
 import com.soaint.springboot.app.productos.models.entity.Venta;
+import com.soaint.springboot.app.productos.security.dto.LoginUsuario;
 
 public class Utilitario {
+	
+	public static boolean verificarBodyCredentials(LoginUsuario usuario) {
+		if (usuario.getNombreUsuario() == null) {
+			return false;
+		} else if (usuario.getPassword() == null) {
+			return false;
+		}
+		return true;
+	}
+	
 	public static boolean verificarBodyProducto(Producto producto) {
 		if (producto.getNombre() == null) {
 			return false;
@@ -44,5 +55,4 @@ public class Utilitario {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		return gson.toJson(object);
 	}
-
 }

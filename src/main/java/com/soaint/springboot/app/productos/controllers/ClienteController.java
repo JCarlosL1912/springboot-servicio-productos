@@ -23,7 +23,7 @@ public class ClienteController {
 	@Autowired
 	private IClienteService clienteService;
 	
-	@PostMapping("/cliente")
+	@PostMapping(Constantes.RUTA_CLIENTE)
 	public ResponseBean create(@RequestBody Cliente cliente ) throws CreateEmptyObjectException {
 		LOG.debug(Utilitario.getJsonPrint(cliente));
 		ResponseBean response = new ResponseBean();
